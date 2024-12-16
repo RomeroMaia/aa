@@ -13,9 +13,7 @@
     <div id="resultado"></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        // Substitua 'sua_chave_api' pela sua chave de acesso à API do IBGE
-        const apiKey = 'https://servicodados.ibge.gov.br/api/v3/agregados?assunto=70';
-        // Exemplo de requisição para obter a população total do Brasil
+        // Exemplo de requisição para obter dados do ibge
         axios.get(`https://servicodados.ibge.gov.br/api/v3/agregados?assunto=70`)
             .then(response => {
                 const populacao = response.data.resultados[0].estimativa;
