@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Importância do IBGE e Dados da População Brasileira</title>
+</head>
+<body>
+    <h1>A Importância do IBGE</h1>
+    <p>O Instituto Brasileiro de Geografia e Estatística (IBGE) desempenha um papel fundamental para o desenvolvimento do país. Através de pesquisas e coleta de dados, o IBGE fornece informações precisas sobre a população, a economia, a sociedade e o território brasileiro. Essas informações são essenciais para a formulação de políticas públicas, o planejamento de investimentos e a tomada de decisões em diversos setores.</p>
+    <p>Os dados do IBGE são utilizados por pesquisadores, governos, empresas e cidadãos em geral. Eles permitem conhecer a realidade do país, identificar desafios e oportunidades, e acompanhar as transformações sociais e econômicas ao longo do tempo.</p>
+    <h2>Dados da População Brasileira</h2>
+    <div id="resultado"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Substitua 'sua_chave_api' pela sua chave de acesso à API do IBGE
+        const apiKey = 'https://servicodados.ibge.gov.br/api/v3/agregados?assunto=70';
+        // Exemplo de requisição para obter a população total do Brasil
+        axios.get(`https://servicodados.ibge.gov.br/api/v3/agregados?assunto=70`)
+            .then(response => {
+                const populacao = response.data.resultados[0].estimativa;
+                document.getElementById('resultado').innerHTML = `A população estimada do Brasil em 2023 é de ${populacao} habitantes.`;
+            })
+            .catch(error => {
+                console.error(error);
+                document.getElementById('resultado').innerHTML = 'Erro ao buscar os dados da população.';
+            });
+    </script>
+</body>
+</html>
