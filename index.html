@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Importância do IBGE e Dados da População Brasileira</title>
+  <title>Pesquisa Mensal de Abate de Animais</title>
 </head>
 <body>
-    <h1>A Importância do IBGE</h1>
-    <p>O Instituto Brasileiro de Geografia e Estatística (IBGE) desempenha um papel fundamental para o desenvolvimento do país. Através de pesquisas e coleta de dados, o IBGE fornece informações precisas sobre a população, a economia, a sociedade e o território brasileiro. Essas informações são essenciais para a formulação de políticas públicas, o planejamento de investimentos e a tomada de decisões em diversos setores.</p>
-    <p>Os dados do IBGE são utilizados por pesquisadores, governos, empresas e cidadãos em geral. Eles permitem conhecer a realidade do país, identificar desafios e oportunidades, e acompanhar as transformações sociais e econômicas ao longo do tempo.</p>
-    <h2>Dados da População Brasileira</h2>
-    <div id="resultado"></div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script>
-        // Exemplo de requisição para obter dados do ibge
-        axios.get(`https://servicodados.ibge.gov.br/api/v3/agregados?assunto=70`)
-            .then(response => {
-                const populacao = response.data.resultados[0].estimativa;
-                document.getElementById('resultado').innerHTML = `A população estimada do Brasil em 2023 é de ${populacao} habitantes.`;
-            })
-            .catch(error => {
-                console.error(error);
-                document.getElementById('resultado').innerHTML = 'Erro ao buscar os dados da população.';
-            });
-    </script>
+  <h1>Pesquisa Mensal de Abate de Animais</h1>
+  <div id="dados-ibge"></div>
+
+  <script>
+    // Função para fazer a requisição à API e atualizar o HTML
+    async function fetchData() {
+      try {
+        const response = await fetch('https://servicodados.ibge.gov.br/api/v3/agregados?assunto=70');
+        const data = await response.json();
+
+        // Exemplo de como exibir os dados (ajuste conforme sua necessidade)
+        const dadosDiv = document.getElementById('dados-ibge');
+        dadosDiv.textContent = `O último dado disponível é de ${data.resultados[0].periodo}`;
+      } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+      }
+    }
+
+    // Chamar a função ao carregar a página
+    fetchData();
+  </script>
 </body>
 </html>
