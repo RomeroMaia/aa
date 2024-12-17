@@ -1,26 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <title>Notícias IBGE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste IBGE</title>
 </head>
 <body>
-  <h1>teste lll</h1>
-  <div id="dados-ibge"></div>
+    <header>
+        <h1>Romero</h1>
+    </header>
 
-  <script>
-    async function fetchData() {
-      try {
-        const response = await fetch('https://servicodados.ibge.gov.br/api/v3/noticias');
-        const data = await response.json();
+    <div id="noticia">
+        <!-- A notícia será carregada aqui -->
+    </div>
 
-        const dadosDiv = document.getElementById('dados-ibge');
-        dadosDiv.textContent = O último dado disponível é de ${data.items[0].data_publicacao}</p>
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      }
-    }
+    <script>
+        // Função para carregar a notícia
+        function carregarNoticia() {
+            fetch('https://servicodados.ibge.gov.br/api/v3/noticias')
+                .then(response => response.json())  // Converte a resposta para JSON
+                .then(data => {
+                    // Acessando o primeiro item da lista de notícias
+                    const noticia = data.items[0];
 
-    fetchData();
-  </script>
+                    // Criando os elementos HTML para exibir a notícia
+                    const titulo = document.createElement('h2');
+                    titulo.textContent = noticia.titulo;
+
+                    const introducao = document.createElement('p');
+                    introducao.innerHTML = `<strong>Introdução:</strong> ${noticia.introducao}`;
+
+                    const dataPublicacao = document.createElement('p');
+                    dataPublicacao.innerHTML = `<strong>Data de publicação:</strong> ${noticia.data_publicacao}`;
+
+                    const linkNoticia = document.createElement('a');
+                    linkNoticia.href = noticia.link;
+                    linkNoticia.target = "_blank";
+                    linkNoticia.textContent = 'Leia a notícia completa';
+
+                    // Inserindo os elementos no div de notícias
+                    const noticiaDiv = document.getElementById('noticia');
+                    noticiaDiv.appendChild(titulo);
+                    noticiaDiv.appendChild(introducao);
+                    noticiaDiv.appendChild(dataPublicacao);
+                    noticiaDiv.appendChild(linkNoticia);
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar a notícia:', error);
+                });
+        }
+
+        // Carregar a notícia ao carregar a página
+        window.onload = carregarNoticia;
+    </script>
 </body>
 </html>
