@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pesquisa Mensal de Abate de Animais</title>
+  <title>Notícias IBGE</title>
 </head>
 <body>
-  <h1>Pesquisa Mensal de Abate de Animais</h1>
+  <h1>Notícias IBGE</h1>
   <div id="dados-ibge"></div>
 
   <script>
     // Função para fazer a requisição à API e atualizar o HTML
     async function fetchData() {
       try {
-        const response = await fetch('https://servicodados.ibge.gov.br/api/v3/agregados?assunto=70');
+        const response = await fetch('https://servicodados.ibge.gov.br/api/v3/noticias');
         const data = await response.json();
 
         // Exemplo de como exibir os dados (ajuste conforme sua necessidade)
