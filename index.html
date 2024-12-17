@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Notícias IBGE</title>
+  <title>Calendário IBGE</title>
 </head>
 <body>
-  <h1>Notícias IBGE</h1>
+  <h1>Calendário do sdi</h1>
   <div id="dados-ibge"></div>
-
   <script>
-    // Função para fazer a requisição à API e atualizar o HTML
     async function fetchData() {
       try {
-        const response = await fetch('https://servicodados.ibge.gov.br/api/v3/noticias');
+        const response = await fetch('(https://servicodados.ibge.gov.br/api/v3/calendario/contas-nacionais-trimestrais/?qtd=3)');
+        
+        if (!response.ok) {
+          throw new Error(`Erro ${response.status}: ${response.statusText}`);
+        }
+        
         const data = await response.json();
-
-        // Exemplo de como exibir os dados (ajuste conforme sua necessidade)
         const dadosDiv = document.getElementById('dados-ibge');
         dadosDiv.textContent = `O último dado disponível é de ${data[0].nome}`;
       } catch (error) {
-        console.error('Erro ao buscar dados:', error);
+        console.error('Erro ao buscar dados:', error.message);
       }
     }
-
-    // Chamar a função ao carregar a página
     fetchData();
   </script>
 </body>
