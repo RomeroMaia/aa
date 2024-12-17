@@ -4,7 +4,7 @@
   <title>Notícias IBGE</title>
 </head>
 <body>
-  <h1>IBGE lll</h1>
+  <h1>teste lll</h1>
   <div id="dados-ibge"></div>
 
   <script>
@@ -15,8 +15,6 @@
 
         const dadosDiv = document.getElementById('dados-ibge');
         dadosDiv.textContent = O último dado disponível é de ${data.items[0].data_publicacao}</p>
-          <a href="${data.items[0].link}" target="_blank">Leia mais</a>
-        `;
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       }
