@@ -16,7 +16,7 @@
 
         // Exemplo de como exibir os dados (ajuste conforme sua necessidade)
         const dadosDiv = document.getElementById('dados-ibge');
-        dadosDiv.textContent = `O último dado disponível é de ${data.resultados[0].periodo}`;
+        dadosDiv.textContent = `O último dado disponível é de ${data[0].nome}`;
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       }
