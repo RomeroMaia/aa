@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBGE</title>
+    <title>Oficina IBGE- RomeroMaia</title>
 </head>
 <body>
     <header>
-        <h1>Usando a API do portal de notícias do IBGE.
-        Essa notícia abaixo é integrada ao site por meio da ferramenta de API aberta do IBGE:</h1>
+        <h1>Usando a API do Agência de Notícias do IBGE.
+        Esta notícia abaixo é integrada ao site por meio da ferramenta de API aberta do IBGE:</h1>
     </header>
 
     <div id="noticia">
-        <!-- A notícia será carregada aqui -->
+
     </div>
 
     <script>
-        // Função para carregar a notícia
+
         function carregarNoticia() {
             fetch('https://servicodados.ibge.gov.br/api/v3/noticias')
-                .then(response => response.json())  // Converte a resposta para JSON
+                .then(response => response.json())  
                 .then(data => {
-                    // Acessando o primeiro item da lista de notícias
+                  
                     const noticia = data.items[0];
 
-                    // Criando os elementos HTML para exibir a notícia
+               
                     const titulo = document.createElement('h2');
                     titulo.textContent = noticia.titulo;
 
@@ -39,7 +39,7 @@
                     linkNoticia.target = "_blank";
                     linkNoticia.textContent = 'Leia a notícia completa';
 
-                    // Inserindo os elementos no div de notícias
+               
                     const noticiaDiv = document.getElementById('noticia');
                     noticiaDiv.appendChild(titulo);
                     noticiaDiv.appendChild(introducao);
@@ -51,7 +51,7 @@
                 });
         }
 
-        // Carregar a notícia ao carregar a página
+        
         window.onload = carregarNoticia;
     </script>
 </body>
